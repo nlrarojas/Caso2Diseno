@@ -24,4 +24,8 @@ public class CharacterRepresentation {
         return Character.toString(character);
     }
     
+    public char getChar(){
+        return character;
+    }
+    
 }

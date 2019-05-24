@@ -1,4 +1,5 @@
 package Model.strategy;
+import Model.TextRepresentation;
 
 public class FileSystemProvider {
 
