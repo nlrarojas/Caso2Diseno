@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 /**
@@ -10,6 +5,7 @@ package Model;
  * @author Charlie
  */
 public class CharacterRepresentation {
+
     char character;
     Color color;
     boolean bold;
@@ -19,13 +15,13 @@ public class CharacterRepresentation {
         this.color = color;
         this.bold = bold;
     }
-    
-    public String getText(){
+
+    public String getText() {
         return Character.toString(character);
     }
-    
-    public char getChar(){
+
+    public char getChar() {
         return character;
     }
-    
+
 }
