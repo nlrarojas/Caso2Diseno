@@ -16,9 +16,11 @@ import java.util.List;
  */
 public class TextRepresentation {
     ArrayList<CharacterRepresentation> characters;
-
+    ColorFlyweight colorFactory;
+    
     public TextRepresentation() {
         characters = new ArrayList<CharacterRepresentation>();
+        colorFactory = new ColorFlyweight();
     }
     
     public String getAsText(){
@@ -34,22 +36,23 @@ public class TextRepresentation {
     }
     
     
-    public void addText(String newText,Color color){
-        if(color == null) color = new ColorHTML("#000000");
+    public void addText(String newText,String color){
+        Color colorObject = colorFactory.getColor(color);
+        //new ColorHTML("#000000");
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
             //System.out.print(newText.charAt(i));
-            currentCharacter = new CharacterRepresentation(newText.charAt(i),new ColorHTML("#000000"),false);
+            currentCharacter = new CharacterRepresentation(newText.charAt(i),colorObject,false);
             characters.add(currentCharacter);
 	}
     }
     
-     public void addAtIndexText(int index, String newText,Color color){
-        if(color == null) color = new ColorHTML("#000000");
+     public void addAtIndexText(int index, String newText,String color){
+        Color colorObject = colorFactory.getColor(color);
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
             //System.out.print(newText.charAt(i));
-            currentCharacter = new CharacterRepresentation(newText.charAt(i),new ColorHTML("#000000"),false);
+            currentCharacter = new CharacterRepresentation(newText.charAt(i),colorObject,false);
             characters.add(index + i,currentCharacter);
 	}
     }

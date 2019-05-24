@@ -60,42 +60,33 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(editorPane);
 
-        newFileBtn.setBackground(null);
         newFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/new.png"))); // NOI18N
         newFileBtn.setBorder(null);
 
-        openFileBtn.setBackground(null);
         openFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/open.png"))); // NOI18N
         openFileBtn.setBorder(null);
 
-        saveBtn.setBackground(null);
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/save.png"))); // NOI18N
         saveBtn.setToolTipText("");
         saveBtn.setBorder(null);
 
-        saveAsBtn.setBackground(null);
         saveAsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveas.png"))); // NOI18N
         saveAsBtn.setBorder(null);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        undoBtn.setBackground(null);
         undoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/undo.png"))); // NOI18N
         undoBtn.setBorder(null);
 
-        redoBtn.setBackground(null);
         redoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/redo.png"))); // NOI18N
         redoBtn.setBorder(null);
 
-        cutBtn.setBackground(null);
         cutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cut.png"))); // NOI18N
         cutBtn.setBorder(null);
 
-        copyBtn.setBackground(null);
         copyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copy.png"))); // NOI18N
         copyBtn.setBorder(null);
 
-        pasteBtn.setBackground(null);
         pasteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paste.png"))); // NOI18N
         pasteBtn.setBorder(null);
 
