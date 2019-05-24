@@ -52,16 +52,7 @@ public class XmlFilesystem implements IFileSystemStrategy{
                    Element eElement = (Element) nNode;
                    String colorString = eElement.getAttribute("color");
                    boolean isBold = Boolean.parseBoolean(eElement.getAttribute("bold"));
-                   text.addText(eElement.getAttribute("char"), null);
-
-                   System.out.println("Student roll no : " 
-                      + eElement.getAttribute("rollno"));
-                   System.out.println("First Name : " 
-                      + eElement
-                      .getElementsByTagName("firstname")
-                      .item(0)
-                      .getTextContent());
-
+                   text.addText(eElement.getAttribute("char"), colorString);
                 }
          }
             

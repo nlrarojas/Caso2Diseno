@@ -1,22 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model.memento;
+package Model;
 
 public class Memento<T> {
+
     private T state;
-    
-    public Memento(T initialState){
-        state = initialState;
+
+    public Memento(T initialState) {
+        this.state = initialState;
     }
-    
-    public void memento(T newState){
-        state = newState;
+
+    public void setState (T newState) {
+        this.state = newState;
     }
-    
-    public T getState(){
-        return state;
+
+    public T getState() {
+        return this.state;
     }
 }

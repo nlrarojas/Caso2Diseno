@@ -30,14 +30,15 @@ public class JsonFileSystem implements IFileSystemStrategy {
         String s = this.info;
 
         for (int i = 0; i < s.length(); i++) {
-            
-            CharacterRepresentation character = new CharacterRepresentation(s.charAt(i), new ColorHTML("#000000"),false);
-            textRepresentation.addText(java.lang.Character.toString(s.charAt(i)),null);
+
+            CharacterRepresentation character = new CharacterRepresentation(s.charAt(i), new ColorHTML("#000000"), false);
+            textRepresentation.addText(java.lang.Character.toString(s.charAt(i)), null);
         }
 
         return textRepresentation;
     }
 
+    @Override
     public TextRepresentation loadFile() {
         JSONParser jsonParser = new JSONParser();
 
@@ -63,6 +64,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
         employee.forEach(emp -> this.info += (String) emp);
     }
 
+    @Override
     public void saveFile(TextRepresentation pText) {
         ArrayList<CharacterRepresentation> characters = pText.getCharacters();
         JSONArray paragraphs = new JSONArray();
@@ -78,7 +80,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
                 if (i == characters.size() - 1) {
                     paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
                     paragraphs.add(paragraphDetails);
-                } else if (characters.get(i+1).getChar() == '\n') {
+                } else if (characters.get(i + 1).getChar() == '\n') {
                     paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
                     paragraphs.add(paragraphDetails);
                     paragraphDetails = new JSONObject();
@@ -96,6 +98,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
         }
     }
 
+    @Override
     public void setFile(String pPath) {
         this.path = pPath;
         File file = new File(pPath);
