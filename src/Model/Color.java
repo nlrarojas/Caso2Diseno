@@ -10,5 +10,5 @@ package Model;
  * @author Charlie
  */
 public interface Color {
-     public String getColorText();
+     public String getColorAsText();
 }
