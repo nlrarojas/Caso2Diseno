@@ -7,7 +7,9 @@ package view;
 
 import controller.Client;
 import java.awt.Color;
+import java.io.File;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.swing.JColorChooser;
 public class PrincipalWindow extends javax.swing.JFrame {
 
     Client client;
+    final JFileChooser fc = new JFileChooser();
     /**
      * Creates new form PrincipalWindow
      */
@@ -24,6 +27,33 @@ public class PrincipalWindow extends javax.swing.JFrame {
         this.client = new Client();
     }
 
+    public File openFile() {
+        int returnVal = fc.showOpenDialog(this);
+        File file = null;
+        
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            //This is where a real application would open the file.
+            System.out.println("Opening: " + file.getName() + ".");
+        } else {
+            System.out.println("Open command cancelled by user.");
+        }
+        return file;
+    }
+    
+    public File saveFile() {
+        int returnVal = fc.showSaveDialog(this);
+        File file = null;
+        
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            file = fc.getSelectedFile();
+            //This is where a real application would open the file.
+            System.out.println("Opening: " + file.getName() + ".");
+        } else {
+            System.out.println("Open command cancelled by user.");
+        }
+        return file;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +98,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(editorPane);
 
-        newFileBtn.setBackground(null);
         newFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/new.png"))); // NOI18N
         newFileBtn.setBorder(null);
         newFileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +106,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        openFileBtn.setBackground(null);
         openFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/open.png"))); // NOI18N
         openFileBtn.setBorder(null);
         openFileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +114,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        saveBtn.setBackground(null);
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/save.png"))); // NOI18N
         saveBtn.setToolTipText("");
         saveBtn.setBorder(null);
@@ -96,7 +123,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        saveAsBtn.setBackground(null);
         saveAsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveas.png"))); // NOI18N
         saveAsBtn.setBorder(null);
         saveAsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +133,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        undoBtn.setBackground(null);
         undoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/undo.png"))); // NOI18N
         undoBtn.setBorder(null);
         undoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +141,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        redoBtn.setBackground(null);
         redoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/redo.png"))); // NOI18N
         redoBtn.setBorder(null);
         redoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +149,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        cutBtn.setBackground(null);
         cutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cut.png"))); // NOI18N
         cutBtn.setBorder(null);
         cutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +157,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        copyBtn.setBackground(null);
         copyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copy.png"))); // NOI18N
         copyBtn.setBorder(null);
         copyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +165,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
             }
         });
 
-        pasteBtn.setBackground(null);
         pasteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paste.png"))); // NOI18N
         pasteBtn.setBorder(null);
         pasteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +177,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        colorPickerBtn.setBackground(null);
         colorPickerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/color.png"))); // NOI18N
         colorPickerBtn.setBorder(null);
         colorPickerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -339,7 +359,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openItemMenuActionPerformed
-        this.client.openFile();
+        this.client.openFile(openFile());
     }//GEN-LAST:event_openItemMenuActionPerformed
 
     private void colorPickerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerBtnActionPerformed
@@ -351,15 +371,18 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newFileBtnActionPerformed
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileBtnActionPerformed
-        this.client.openFile();
+        this.client.openFile(openFile());
     }//GEN-LAST:event_openFileBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         this.client.saveFile();
+        //check if file already exists otherwise open saveDialogBox
+        saveFile();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsBtnActionPerformed
         this.client.saveFileAs();
+        saveFile();
     }//GEN-LAST:event_saveAsBtnActionPerformed
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
@@ -388,10 +411,13 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
     private void saveItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemMenuActionPerformed
         this.client.saveFile();
+        //check if file already exists otherwise open saveDialogBox
+        saveFile();
     }//GEN-LAST:event_saveItemMenuActionPerformed
 
     private void saveAsItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemMenuActionPerformed
         this.client.saveFileAs();
+        saveFile();
     }//GEN-LAST:event_saveAsItemMenuActionPerformed
 
     private void undoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoItemMenuActionPerformed
