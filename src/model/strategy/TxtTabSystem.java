@@ -1,11 +1,13 @@
 package Model.strategy;
 
+import Model.CharacterRepresentation;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import Model.TextRepresentation;
 
 public class TxtTabSystem implements IFileSystemStrategy{
 	private String path;
@@ -22,8 +24,9 @@ public class TxtTabSystem implements IFileSystemStrategy{
 			while ((i=fr.read()) != -1) {
 				char currChar = (char) i;
 				if(currChar != '\t') {
-					Character character = new Character(currChar, "000000");
-					textRepresentation.addCharacters(character);
+					//Character character = new Character(currChar, "000000");
+					//textRepresentation.addCharacters(character);
+                                        textRepresentation.addText(Character.toString(currChar),null);
 				}
 			}
 		} catch (IOException e) {
@@ -34,14 +37,14 @@ public class TxtTabSystem implements IFileSystemStrategy{
 	
 	public void saveFile(TextRepresentation pText) {
 		
-		ArrayList<Character> characters = pText.getCharacters();
+		ArrayList<CharacterRepresentation> characters = pText.getCharacters();
 		
 		try {
 			
 			PrintWriter out = new PrintWriter(this.path);
 			
 			for (int i=0; i<characters.size(); i++) {
-				char currCharacter = characters.get(i).getCharacter();
+				char currCharacter = characters.get(i).getChar();
 				if(i%10 == 0) {
 					out.println("\\t");
 					out.println(currCharacter);

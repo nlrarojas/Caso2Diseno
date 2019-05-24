@@ -1,5 +1,9 @@
 package Model.strategy;
 
+import Model.CharacterRepresentation;
+import Model.ColorHTML;
+import Model.TextRepresentation;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -26,8 +30,9 @@ public class JsonFileSystem implements IFileSystemStrategy {
         String s = this.info;
 
         for (int i = 0; i < s.length(); i++) {
-            Character character = new Character(s.charAt(i), "000000");
-            textRepresentation.addCharacters(character);
+            
+            CharacterRepresentation character = new CharacterRepresentation(s.charAt(i), new ColorHTML("#000000"),false);
+            textRepresentation.addText(java.lang.Character.toString(s.charAt(i)),null);
         }
 
         return textRepresentation;
@@ -36,7 +41,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
     public TextRepresentation loadFile() {
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("employees.json")) {
+        try (FileReader reader = new FileReader(path)) {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
@@ -59,21 +64,21 @@ public class JsonFileSystem implements IFileSystemStrategy {
     }
 
     public void saveFile(TextRepresentation pText) {
-        ArrayList<Character> characters = pText.getCharacters();
+        ArrayList<CharacterRepresentation> characters = pText.getCharacters();
         JSONArray paragraphs = new JSONArray();
         JSONObject paragraphDetails = new JSONObject();
         String paragraph = "";
         int paragraphCount = 1;
 
         for (int i = 0; i < characters.size(); i++) {
-            char currChar = characters.get(i).getCharacter();
+            char currChar = characters.get(i).getChar();
             paragraph += currChar;
 
             if (currChar == '.') {
                 if (i == characters.size() - 1) {
                     paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
                     paragraphs.add(paragraphDetails);
-                } else if (characters.get(i + 1).getCharacter() == '\n') {
+                } else if (characters.get(i+1).getChar() == '\n') {
                     paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
                     paragraphs.add(paragraphDetails);
                     paragraphDetails = new JSONObject();

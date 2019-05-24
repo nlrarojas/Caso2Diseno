@@ -35,6 +35,7 @@ public class TextRepresentation {
     
     
     public void addText(String newText,Color color){
+        if(color == null) color = new ColorHTML("#000000");
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
             //System.out.print(newText.charAt(i));
@@ -44,6 +45,7 @@ public class TextRepresentation {
     }
     
      public void addAtIndexText(int index, String newText,Color color){
+        if(color == null) color = new ColorHTML("#000000");
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
             //System.out.print(newText.charAt(i));
@@ -65,6 +67,10 @@ public class TextRepresentation {
         characters.removeAll(removedChars);
         
         return removedChars;
+    }
+
+    public ArrayList<CharacterRepresentation> getCharacters() {
+        return characters;
     }
     
     
