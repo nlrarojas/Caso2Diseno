@@ -39,13 +39,17 @@ public class TxtFileSystem implements IFileSystemStrategy {
         ArrayList<CharacterRepresentation> characters = pText.getCharacters();
 
         try {
-
-            PrintWriter out = new PrintWriter(this.path);
+        	File file = new File(this.path);
+			file.getParentFile().mkdirs();
+			
+            PrintWriter out = new PrintWriter(file);
 
             for (int i = 0; i < characters.size(); i++) {
                 char currentChar = characters.get(i).getChar();
                 out.println(currentChar);
             }
+            
+            out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

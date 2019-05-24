@@ -43,15 +43,17 @@ public class TxtTabSystem implements IFileSystemStrategy {
         ArrayList<CharacterRepresentation> characters = pText.getCharacters();
 
         try {
+        	File file = new File(this.path);
+			file.getParentFile().mkdirs();
 
-            PrintWriter out = new PrintWriter(this.path);
+            PrintWriter out = new PrintWriter(file);
 
             for (int i = 0; i < characters.size(); i++) {
                 char currCharacter = characters.get(i).getChar();
                 if (i % 10 == 0) {
-                    out.println("\\t");
-                    out.println(currCharacter);
+                    out.println('\t');
                 }
+                out.println(currCharacter);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

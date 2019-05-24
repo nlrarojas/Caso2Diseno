@@ -20,9 +20,11 @@ public class JsonFileSystem implements IFileSystemStrategy {
 
     private String path;
     private String info;
+    private int count;
 
     public JsonFileSystem() {
-
+    	this.info = "";
+		this.count = 1;
     }
 
     public TextRepresentation convertStringtoTextRepresentation() {
@@ -34,6 +36,8 @@ public class JsonFileSystem implements IFileSystemStrategy {
             CharacterRepresentation character = new CharacterRepresentation(s.charAt(i), new ColorHTML("#000000"), false);
             textRepresentation.addText(java.lang.Character.toString(s.charAt(i)), null);
         }
+        
+        this.info = "";
 
         return textRepresentation;
     }
@@ -50,7 +54,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
             System.out.println(employeeList);
 
             //Iterate over employee array
-            employeeList.forEach(emp -> parseFileObject((JSONArray) emp));
+            employeeList.forEach(emp -> parseFileObject((JSONObject) emp));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -60,8 +64,9 @@ public class JsonFileSystem implements IFileSystemStrategy {
         return convertStringtoTextRepresentation();
     }
 
-    private void parseFileObject(JSONArray employee) {
-        employee.forEach(emp -> this.info += (String) emp);
+    private void parseFileObject(JSONObject employee) {
+    	this.info += (String) employee.get("Paragraph " + this.count);
+		this.count++;
     }
 
     @Override
@@ -83,6 +88,7 @@ public class JsonFileSystem implements IFileSystemStrategy {
                 } else if (characters.get(i + 1).getChar() == '\n') {
                     paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
                     paragraphs.add(paragraphDetails);
+                    paragraph = "";
                     paragraphDetails = new JSONObject();
                     paragraphCount += 1;
                     i++;
