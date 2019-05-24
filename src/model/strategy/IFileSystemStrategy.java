@@ -15,5 +15,5 @@ public interface IFileSystemStrategy {
 
     public void saveFile(TextRepresentation text);
 
-    public void setFile(String path);
+    public void setFile(String path);    
 }

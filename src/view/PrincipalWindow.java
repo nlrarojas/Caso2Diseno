@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.Client;
 import java.awt.Color;
 import javax.swing.JColorChooser;
 
@@ -14,11 +15,13 @@ import javax.swing.JColorChooser;
  */
 public class PrincipalWindow extends javax.swing.JFrame {
 
+    Client client;
     /**
      * Creates new form PrincipalWindow
      */
     public PrincipalWindow() {
         initComponents();        
+        this.client = new Client();
     }
 
     /**
@@ -68,41 +71,86 @@ public class PrincipalWindow extends javax.swing.JFrame {
         newFileBtn.setBackground(null);
         newFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/new.png"))); // NOI18N
         newFileBtn.setBorder(null);
+        newFileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newFileBtnActionPerformed(evt);
+            }
+        });
 
         openFileBtn.setBackground(null);
         openFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/open.png"))); // NOI18N
         openFileBtn.setBorder(null);
+        openFileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFileBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setBackground(null);
         saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/save.png"))); // NOI18N
         saveBtn.setToolTipText("");
         saveBtn.setBorder(null);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         saveAsBtn.setBackground(null);
         saveAsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveas.png"))); // NOI18N
         saveAsBtn.setBorder(null);
+        saveAsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsBtnActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         undoBtn.setBackground(null);
         undoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/undo.png"))); // NOI18N
         undoBtn.setBorder(null);
+        undoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoBtnActionPerformed(evt);
+            }
+        });
 
         redoBtn.setBackground(null);
         redoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/redo.png"))); // NOI18N
         redoBtn.setBorder(null);
+        redoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoBtnActionPerformed(evt);
+            }
+        });
 
         cutBtn.setBackground(null);
         cutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cut.png"))); // NOI18N
         cutBtn.setBorder(null);
+        cutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutBtnActionPerformed(evt);
+            }
+        });
 
         copyBtn.setBackground(null);
         copyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/copy.png"))); // NOI18N
         copyBtn.setBorder(null);
+        copyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyBtnActionPerformed(evt);
+            }
+        });
 
         pasteBtn.setBackground(null);
         pasteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paste.png"))); // NOI18N
         pasteBtn.setBorder(null);
+        pasteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteBtnActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -190,6 +238,11 @@ public class PrincipalWindow extends javax.swing.JFrame {
         fileMenu.setText("Archivo");
 
         addNewItemMenu.setText("Nuevo");
+        addNewItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewItemMenuActionPerformed(evt);
+            }
+        });
         fileMenu.add(addNewItemMenu);
 
         openItemMenu.setText("Abrir");
@@ -201,9 +254,19 @@ public class PrincipalWindow extends javax.swing.JFrame {
         fileMenu.add(openItemMenu);
 
         saveItemMenu.setText("Guardar");
+        saveItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveItemMenuActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveItemMenu);
 
         saveAsItemMenu.setText("Guardar como");
+        saveAsItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAsItemMenuActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveAsItemMenu);
 
         jMenuBar1.add(fileMenu);
@@ -211,18 +274,43 @@ public class PrincipalWindow extends javax.swing.JFrame {
         editMenu.setText("Editar");
 
         undoItemMenu.setText("Rehacer");
+        undoItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undoItemMenuActionPerformed(evt);
+            }
+        });
         editMenu.add(undoItemMenu);
 
         redoItemMenu.setText("Deshacer");
+        redoItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoItemMenuActionPerformed(evt);
+            }
+        });
         editMenu.add(redoItemMenu);
 
         copyItemMenu.setText("Copiar");
+        copyItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyItemMenuActionPerformed(evt);
+            }
+        });
         editMenu.add(copyItemMenu);
 
         cutItemMenu.setText("Cortar");
+        cutItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutItemMenuActionPerformed(evt);
+            }
+        });
         editMenu.add(cutItemMenu);
 
         pastItemMenu.setText("Pegar");
+        pastItemMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pastItemMenuActionPerformed(evt);
+            }
+        });
         editMenu.add(pastItemMenu);
 
         jMenuBar1.add(editMenu);
@@ -251,12 +339,80 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openItemMenuActionPerformed
-        // TODO add your handling code here:
+        this.client.openFile();
     }//GEN-LAST:event_openItemMenuActionPerformed
 
     private void colorPickerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerBtnActionPerformed
         Color color = JColorChooser.showDialog(null, "Seleccione un Color", Color.BLUE);
     }//GEN-LAST:event_colorPickerBtnActionPerformed
+
+    private void newFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileBtnActionPerformed
+        
+    }//GEN-LAST:event_newFileBtnActionPerformed
+
+    private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileBtnActionPerformed
+        this.client.openFile();
+    }//GEN-LAST:event_openFileBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        this.client.saveFile();
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsBtnActionPerformed
+        this.client.saveFileAs();
+    }//GEN-LAST:event_saveAsBtnActionPerformed
+
+    private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
+        this.client.undo();
+    }//GEN-LAST:event_undoBtnActionPerformed
+
+    private void redoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBtnActionPerformed
+        this.client.redo();
+    }//GEN-LAST:event_redoBtnActionPerformed
+
+    private void cutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutBtnActionPerformed
+        this.client.cut();
+    }//GEN-LAST:event_cutBtnActionPerformed
+
+    private void copyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyBtnActionPerformed
+        this.client.copy();
+    }//GEN-LAST:event_copyBtnActionPerformed
+
+    private void pasteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteBtnActionPerformed
+        this.client.paste();
+    }//GEN-LAST:event_pasteBtnActionPerformed
+
+    private void addNewItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewItemMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addNewItemMenuActionPerformed
+
+    private void saveItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemMenuActionPerformed
+        this.client.saveFile();
+    }//GEN-LAST:event_saveItemMenuActionPerformed
+
+    private void saveAsItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemMenuActionPerformed
+        this.client.saveFileAs();
+    }//GEN-LAST:event_saveAsItemMenuActionPerformed
+
+    private void undoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoItemMenuActionPerformed
+        this.client.redo();
+    }//GEN-LAST:event_undoItemMenuActionPerformed
+
+    private void redoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoItemMenuActionPerformed
+        this.client.undo();
+    }//GEN-LAST:event_redoItemMenuActionPerformed
+
+    private void copyItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyItemMenuActionPerformed
+        this.client.copy();
+    }//GEN-LAST:event_copyItemMenuActionPerformed
+
+    private void cutItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutItemMenuActionPerformed
+        this.client.cut();
+    }//GEN-LAST:event_cutItemMenuActionPerformed
+
+    private void pastItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pastItemMenuActionPerformed
+        this.client.paste();
+    }//GEN-LAST:event_pastItemMenuActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addNewItemMenu;
