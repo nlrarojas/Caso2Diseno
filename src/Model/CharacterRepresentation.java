@@ -23,5 +23,8 @@ public class CharacterRepresentation {
     public char getChar() {
         return character;
     }
-
+    
+    public Color getColor(){
+       return color;
+    }
 }
