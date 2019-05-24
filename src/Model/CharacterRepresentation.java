@@ -28,4 +28,8 @@ public class CharacterRepresentation {
         return character;
     }
     
+    public Color getColor(){
+       return color;
+    }
+    
 }
