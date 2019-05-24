@@ -27,4 +27,10 @@ public class CharacterRepresentation {
     public Color getColor(){
        return color;
     }
+
+    public boolean isBold() {
+        return bold;
+    }
+    
+
 }
