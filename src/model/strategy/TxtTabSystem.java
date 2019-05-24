@@ -1,4 +1,4 @@
-package model.strategy;
+package Model.strategy;
 
 import java.io.File;
 import java.io.FileNotFoundException;
