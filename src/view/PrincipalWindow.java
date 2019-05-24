@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Color;
+import javax.swing.JColorChooser;
+
 /**
  *
  * @author Nelson
@@ -15,7 +18,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
      * Creates new form PrincipalWindow
      */
     public PrincipalWindow() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -41,6 +44,8 @@ public class PrincipalWindow extends javax.swing.JFrame {
         copyBtn = new javax.swing.JButton();
         pasteBtn = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        colorPickerBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -101,6 +106,17 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        colorPickerBtn.setBackground(null);
+        colorPickerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/color.png"))); // NOI18N
+        colorPickerBtn.setBorder(null);
+        colorPickerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorPickerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,13 +144,21 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 .addComponent(copyBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pasteBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(colorPickerBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(colorPickerBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator3)
                     .addComponent(jSeparator2)
                     .addComponent(pasteBtn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +242,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -230,8 +254,13 @@ public class PrincipalWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_openItemMenuActionPerformed
 
+    private void colorPickerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerBtnActionPerformed
+        Color color = JColorChooser.showDialog(null, "Seleccione un Color", Color.BLUE);
+    }//GEN-LAST:event_colorPickerBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addNewItemMenu;
+    private javax.swing.JButton colorPickerBtn;
     private javax.swing.JButton copyBtn;
     private javax.swing.JMenuItem copyItemMenu;
     private javax.swing.JButton cutBtn;
@@ -245,6 +274,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton newFileBtn;
     private javax.swing.JButton openFileBtn;
     private javax.swing.JMenuItem openItemMenu;
