@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model.memento;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Charlie
- */
 public class CareTaker<T> {
     ArrayList<Memento<T>> mementos;
 
