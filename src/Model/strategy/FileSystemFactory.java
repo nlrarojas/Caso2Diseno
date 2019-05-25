@@ -9,17 +9,17 @@ public class FileSystemFactory {
     public IFileSystemStrategy create(String type) {
         switch (type) {
             case IFileSystemStrategy.TXT_FILE:
-                break;
+                return new TxtFileSystem();
             case IFileSystemStrategy.TXT_TAB:
-                break;
+                return new TxtTabSystem();
             case IFileSystemStrategy.JSON_FILE:
-                break;
+                return new JsonFileSystem();
             case IFileSystemStrategy.XML_FILE:
-                break;
+                return new XmlFilesystem();
             case IFileSystemStrategy.CSV_FILE:
-                break;
+                return new CsvFileSystem();
             case IFileSystemStrategy.PDF_FILE:
-                break;
+                return new PdfFileSystem();
             default:
 
         }

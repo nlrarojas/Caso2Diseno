@@ -25,5 +25,6 @@ public class ColorHTML implements Color {
     public String getColorAsText() {
         return htmlColor;
     }
-
+    
+ 
 }

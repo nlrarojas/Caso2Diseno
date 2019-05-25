@@ -41,12 +41,12 @@ public class XmlFilesystem implements IFileSystemStrategy{
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("char");
-            System.out.println("----------------------------");
+           // System.out.println("----------------------------");
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                    Element eElement = (Element) nNode;
@@ -87,7 +87,7 @@ public class XmlFilesystem implements IFileSystemStrategy{
                 attrColor.setValue(currChar.getColor().getColorAsText());
                 
                 Attr attrBold = doc.createAttribute("bold");                
-                attrColor.setValue( Boolean.toString(currChar.isBold()));
+                attrBold.setValue( Boolean.toString(currChar.isBold()));
                 
                 Attr attrChar = doc.createAttribute("char");
                 attrChar.setValue(currChar.getText());

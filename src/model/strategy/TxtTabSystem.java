@@ -44,17 +44,19 @@ public class TxtTabSystem implements IFileSystemStrategy {
 
         try {
         	File file = new File(this.path);
-			file.getParentFile().mkdirs();
+                file.getParentFile().mkdirs();
 
             PrintWriter out = new PrintWriter(file);
 
             for (int i = 0; i < characters.size(); i++) {
                 char currCharacter = characters.get(i).getChar();
                 if (i % 10 == 0) {
-                    out.println('\t');
+                    out.print('\t');
                 }
-                out.println(currCharacter);
+                out.print(currCharacter);
             }
+            
+            out.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -46,7 +46,7 @@ public class TxtFileSystem implements IFileSystemStrategy {
 
             for (int i = 0; i < characters.size(); i++) {
                 char currentChar = characters.get(i).getChar();
-                out.println(currentChar);
+                out.print(currentChar);
             }
             
             out.close();
