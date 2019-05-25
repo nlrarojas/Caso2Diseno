@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.io.File;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -62,11 +63,20 @@ public class PrincipalWindow extends javax.swing.JFrame {
         return file;
     }
     
-    public void save(File fileCreated) {
-        text = new TextRepresentation();
-        String hex = "#"+Integer.toHexString(color.getRGB()).substring(2);
-        text.addText(editorPane.getText(), hex);
-        this.client.saveFile(fileCreated, text);
+    public void save() {
+        if (!editorPane.getText().isEmpty()) {
+            File fileCreated = saveFile();
+            if (fileCreated == null) {
+                editorPane.setText("");
+            } else {
+                text = new TextRepresentation();
+                String hex = "#"+Integer.toHexString(color.getRGB()).substring(2);
+                text.addText(editorPane.getText(), hex);
+                this.client.saveFile(fileCreated, text);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El texto está vacío");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -381,14 +391,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_colorPickerBtnActionPerformed
 
     private void newFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileBtnActionPerformed
-        if (!editorPane.getText().isEmpty()) {
-            File fileCreated = saveFile();
-            if (fileCreated == null) {
-                editorPane.setText("");
-            } else {
-                save(fileCreated);
-            }            
-        }
+        save();
     }//GEN-LAST:event_newFileBtnActionPerformed
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileBtnActionPerformed
@@ -396,14 +399,12 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        text = null;
-        this.client.saveFile(saveFile(), text);
+        save();
         //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsBtnActionPerformed
-        text = null;
-        this.client.saveFile(saveFile(), text);       
+        save();      
     }//GEN-LAST:event_saveAsBtnActionPerformed
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
