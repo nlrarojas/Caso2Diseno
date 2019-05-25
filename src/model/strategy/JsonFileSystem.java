@@ -93,6 +93,9 @@ public class JsonFileSystem implements IFileSystemStrategy {
                     paragraphCount += 1;
                     i++;
                 }
+            } else if(i == characters.size()-1) {
+            	paragraphDetails.put("Paragraph " + paragraphCount, paragraph);
+                paragraphs.add(paragraphDetails);
             }
         }
 

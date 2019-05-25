@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/marlo/Documents/Diseno/Caso2Diseno/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Caso 2/Caso2Diseno/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Caso 2/Caso2Diseno/pdfbox-app-2.0.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
