@@ -1,5 +1,6 @@
 package controller;
 
+import Model.TextRepresentation;
 import java.io.File;
 
 /**
@@ -12,7 +13,7 @@ public class Client {
         
     }
     
-    public void saveFile(File file) {
+    public void saveFile(File file, TextRepresentation textRepresentation) {
         
     }
     

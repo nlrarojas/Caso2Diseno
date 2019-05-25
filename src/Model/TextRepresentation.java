@@ -11,15 +11,13 @@ import java.util.List;
  */
 public class TextRepresentation {
 
-    ArrayList<CharacterRepresentation> characters;
-    ColorFlyweight colorFactory;
-    
+    private ArrayList<CharacterRepresentation> characters;
+    private ColorFlyweight colorFactory;
+
     public TextRepresentation() {
-        characters = new ArrayList<CharacterRepresentation>();
-        colorFactory = new ColorFlyweight();
-
         characters = new ArrayList<>();
-
+        colorFactory = new ColorFlyweight();
+        characters = new ArrayList<>();
     }
 
     public String getAsText() {
@@ -34,11 +32,9 @@ public class TextRepresentation {
         return getAsText();
     }
 
-    
-    public void addText(String newText,String color){
+    public void addText(String newText, String color) {
         Color colorObject = colorFactory.getColor(color);
         //new ColorHTML("#000000");
-
 
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
@@ -48,17 +44,15 @@ public class TextRepresentation {
             characters.add(currentCharacter);
         }
     }
-    
 
     public void addAtIndexText(int index, String newText, String color) {
-         Color colorObject = colorFactory.getColor(color);
+        Color colorObject = colorFactory.getColor(color);
         CharacterRepresentation currentCharacter;
         for (int i = 0; i < newText.length(); i++) {
             //System.out.print(newText.charAt(i));
             currentCharacter = new CharacterRepresentation(newText.charAt(i), colorObject, false);
             characters.add(index + i, currentCharacter);
         }
-
     }
 
     public void removeChar(int index) {

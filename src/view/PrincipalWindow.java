@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
+import Model.TextRepresentation;
 import controller.Client;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -17,14 +14,25 @@ import javax.swing.JFileChooser;
  */
 public class PrincipalWindow extends javax.swing.JFrame {
 
-    Client client;
-    final JFileChooser fc = new JFileChooser();
+    private Client client;
+    private JFileChooser fc;
+    private Color color;
+    private TextRepresentation text;
     /**
      * Creates new form PrincipalWindow
      */
     public PrincipalWindow() {
         initComponents();        
+        
         this.client = new Client();
+        
+        fc = new JFileChooser();
+        fc.setFileFilter(new FileNameExtensionFilter("xml", "xml"));
+        fc.setFileFilter(new FileNameExtensionFilter("txt", "txt"));
+        fc.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
+        fc.setFileFilter(new FileNameExtensionFilter("csv",  "csv"));
+        
+        color = Color.black;
     }
 
     public File openFile() {
@@ -44,7 +52,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
     public File saveFile() {
         int returnVal = fc.showSaveDialog(this);
         File file = null;
-        
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
             //This is where a real application would open the file.
@@ -53,6 +60,13 @@ public class PrincipalWindow extends javax.swing.JFrame {
             System.out.println("Open command cancelled by user.");
         }
         return file;
+    }
+    
+    public void save(File fileCreated) {
+        text = new TextRepresentation();
+        String hex = "#"+Integer.toHexString(color.getRGB()).substring(2);
+        text.addText(editorPane.getText(), hex);
+        this.client.saveFile(fileCreated, text);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -363,11 +377,18 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_openItemMenuActionPerformed
 
     private void colorPickerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerBtnActionPerformed
-        Color color = JColorChooser.showDialog(null, "Seleccione un Color", Color.BLUE);
+        color = JColorChooser.showDialog(null, "Seleccione un Color", Color.BLUE);
     }//GEN-LAST:event_colorPickerBtnActionPerformed
 
     private void newFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileBtnActionPerformed
-        
+        if (!editorPane.getText().isEmpty()) {
+            File fileCreated = saveFile();
+            if (fileCreated == null) {
+                editorPane.setText("");
+            } else {
+                save(fileCreated);
+            }            
+        }
     }//GEN-LAST:event_newFileBtnActionPerformed
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileBtnActionPerformed
@@ -375,12 +396,14 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        this.client.saveFile(saveFile());
+        text = null;
+        this.client.saveFile(saveFile(), text);
         //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsBtnActionPerformed
-        this.client.saveFile(saveFile());        
+        text = null;
+        this.client.saveFile(saveFile(), text);       
     }//GEN-LAST:event_saveAsBtnActionPerformed
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
@@ -408,12 +431,14 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewItemMenuActionPerformed
 
     private void saveItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemMenuActionPerformed
-        this.client.saveFile(saveFile());
+        text = null;
+        this.client.saveFile(saveFile(), text);
         //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveItemMenuActionPerformed
 
     private void saveAsItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemMenuActionPerformed
-        this.client.saveFile(saveFile());        
+        text = null;
+        this.client.saveFile(saveFile(), text);    
     }//GEN-LAST:event_saveAsItemMenuActionPerformed
 
     private void undoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoItemMenuActionPerformed
