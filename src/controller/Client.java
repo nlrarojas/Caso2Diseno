@@ -32,7 +32,7 @@ public class Client {
         
     }
     
-    public void paster() {
+    public void paste() {
         
     }
     
