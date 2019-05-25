@@ -8,6 +8,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -72,7 +74,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 text = new TextRepresentation();
                 String hex = "#"+Integer.toHexString(color.getRGB()).substring(2);
                 text.addText(editorPane.getText(), hex);
-                this.client.saveFile(fileCreated, text);
+                
+                client.getTexOriginator().set(text);
+               
+                this.client.saveFile(fileCreated);
             }
         } else {
             JOptionPane.showMessageDialog(null, "El texto está vacío");
@@ -87,8 +92,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        editorPane = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         newFileBtn = new javax.swing.JButton();
         openFileBtn = new javax.swing.JButton();
@@ -104,6 +107,8 @@ public class PrincipalWindow extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         colorPickerBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        editorPane = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         addNewItemMenu = new javax.swing.JMenuItem();
@@ -119,8 +124,6 @@ public class PrincipalWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 700));
-
-        jScrollPane1.setViewportView(editorPane);
 
         newFileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/new.png"))); // NOI18N
         newFileBtn.setBorder(null);
@@ -240,7 +243,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(colorPickerBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,6 +281,13 @@ public class PrincipalWindow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
+
+        editorPane.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                editorPaneKeyTyped(evt);
+            }
+        });
+        jScrollPane2.setViewportView(editorPane);
 
         fileMenu.setText("Archivo");
 
@@ -365,17 +375,17 @@ public class PrincipalWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -383,11 +393,15 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openItemMenuActionPerformed
-        this.client.openFile(openFile());
+        editorPane.setText(this.client.openFile(openFile()).getAsText());
     }//GEN-LAST:event_openItemMenuActionPerformed
 
     private void colorPickerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorPickerBtnActionPerformed
         color = JColorChooser.showDialog(null, "Seleccione un Color", Color.BLUE);
+        Style style = editorPane.addStyle(color.toString(), null);
+        StyleConstants.setForeground(style, color);
+        
+        
     }//GEN-LAST:event_colorPickerBtnActionPerformed
 
     private void newFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileBtnActionPerformed
@@ -395,7 +409,7 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_newFileBtnActionPerformed
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileBtnActionPerformed
-        this.client.openFile(openFile());
+        editorPane.setText(this.client.openFile(openFile()).getAsText());
     }//GEN-LAST:event_openFileBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -408,11 +422,11 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_saveAsBtnActionPerformed
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
-        this.client.undo();
+        editorPane.setText(this.client.undo().getAsText());
     }//GEN-LAST:event_undoBtnActionPerformed
 
     private void redoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoBtnActionPerformed
-        this.client.redo();
+        editorPane.setText(this.client.redo().getAsText());
     }//GEN-LAST:event_redoBtnActionPerformed
 
     private void cutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutBtnActionPerformed
@@ -432,22 +446,20 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewItemMenuActionPerformed
 
     private void saveItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemMenuActionPerformed
-        text = null;
-        this.client.saveFile(saveFile(), text);
+        save();
         //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveItemMenuActionPerformed
 
     private void saveAsItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemMenuActionPerformed
-        text = null;
-        this.client.saveFile(saveFile(), text);    
+        save();
     }//GEN-LAST:event_saveAsItemMenuActionPerformed
 
     private void undoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoItemMenuActionPerformed
-        this.client.redo();
+        editorPane.setText(this.client.redo().getAsText());
     }//GEN-LAST:event_undoItemMenuActionPerformed
 
     private void redoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoItemMenuActionPerformed
-        this.client.undo();
+        editorPane.setText(this.client.undo().getAsText());
     }//GEN-LAST:event_redoItemMenuActionPerformed
 
     private void copyItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyItemMenuActionPerformed
@@ -462,6 +474,10 @@ public class PrincipalWindow extends javax.swing.JFrame {
         this.client.paste();
     }//GEN-LAST:event_pastItemMenuActionPerformed
 
+    private void editorPaneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_editorPaneKeyTyped
+        client.update(editorPane.getText());
+    }//GEN-LAST:event_editorPaneKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addNewItemMenu;
     private javax.swing.JButton colorPickerBtn;
@@ -470,12 +486,12 @@ public class PrincipalWindow extends javax.swing.JFrame {
     private javax.swing.JButton cutBtn;
     private javax.swing.JMenuItem cutItemMenu;
     private javax.swing.JMenu editMenu;
-    private javax.swing.JEditorPane editorPane;
+    private javax.swing.JTextPane editorPane;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
