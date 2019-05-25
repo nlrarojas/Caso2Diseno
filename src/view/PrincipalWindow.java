@@ -375,14 +375,12 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        this.client.saveFile();
-        //check if file already exists otherwise open saveDialogBox
-        saveFile();
+        this.client.saveFile(saveFile());
+        //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsBtnActionPerformed
-        this.client.saveFileAs();
-        saveFile();
+        this.client.saveFile(saveFile());        
     }//GEN-LAST:event_saveAsBtnActionPerformed
 
     private void undoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoBtnActionPerformed
@@ -410,14 +408,12 @@ public class PrincipalWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewItemMenuActionPerformed
 
     private void saveItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemMenuActionPerformed
-        this.client.saveFile();
-        //check if file already exists otherwise open saveDialogBox
-        saveFile();
+        this.client.saveFile(saveFile());
+        //check if file already exists otherwise open saveDialogBox        
     }//GEN-LAST:event_saveItemMenuActionPerformed
 
     private void saveAsItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemMenuActionPerformed
-        this.client.saveFileAs();
-        saveFile();
+        this.client.saveFile(saveFile());        
     }//GEN-LAST:event_saveAsItemMenuActionPerformed
 
     private void undoItemMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoItemMenuActionPerformed
